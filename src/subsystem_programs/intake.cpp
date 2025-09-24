@@ -52,22 +52,30 @@ void intakeChange()
         hood.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
         midgoal.set_value(LOW);
         preroller.move(127);
-        rollers.move(127);
+        rollers.move(60);
         hood.move(-30);
         if(indexer.get_hue() > 0 && indexer.get_hue() < 30 && preroller.get_power() > 5){
             rollers.move(127);
             pros::delay(50);
-            rollers.move(127);
+            rollers.move(60);
         }
         if (indexer.get_hue() > 190 && indexer.get_hue() < 230)
         {
             while (indexer.get_hue() > 190 && indexer.get_hue() < 230)
             {   
-                rollers.move(-60);
-                preroller.move(-127);
+                if(intake != NONE)
+                {
+                    rollers.move(-60);
+                    preroller.move(-127);
+                }
+                
             }
-            pros::delay(100);
-            preroller.move(127);
+            if(intake != NONE)
+            {
+                pros::delay(100);
+                preroller.move(127);
+            }
+            
         }
     } 
     else if (intake == HIGH_GOAL)
