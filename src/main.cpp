@@ -88,23 +88,8 @@ void opcontrol() {
     while (true) {
 
         intakeUpdate();
-        if(controller1.get_digital_new_press(DIGITAL_DOWN))
-        {
-            mid_descore_state = !mid_descore_state;
-            middescore.set_value(mid_descore_state);
-            
-        }
-        
-
-        // get left y and right x positions
-        int leftY = controller1.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-        int rightX = controller1.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
-
-        // move the robot
-        // prioritize steering slightly
-        chassis.arcade(leftY, rightX, false, 0.75);
-
-        // delay to save resources
+        midGoalDescoreState();
+        drive();
         pros::delay(10);
     }
 }

@@ -79,6 +79,8 @@ void opcontrol(void);
 #include "lemlib/api.hpp"
 #include "subsystem_headers/initialization.hpp"
 #include "subsystem_headers/intake.hpp"
+#include "subsystem_headers/descore.hpp"
+#include "subsystem_headers/drive.hpp"
 
 /**
  * You can add C++-only headers here
