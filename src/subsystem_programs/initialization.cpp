@@ -93,5 +93,14 @@ pros::Motor hood(3);
 pros::ADIDigitalOut midgoal('C');
 pros::ADIDigitalOut middescore('D');
 bool mid_descore_state = false;
+pros::ADIDigitalOut highgoaldescore('B');
+bool highgoal_descore_state = false;
+
+pros::ADIDigitalOut matchloader('A');
+bool matchloader_state = false;
+
+pros::Optical high_goal_sensor(10);
+pros::ADIDigitalIn limit_switch('E');
+
 
 intakeState intake = NONE;

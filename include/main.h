@@ -81,6 +81,7 @@ void opcontrol(void);
 #include "subsystem_headers/intake.hpp"
 #include "subsystem_headers/descore.hpp"
 #include "subsystem_headers/drive.hpp"
+#include "subsystem_headers/matchloader.hpp"
 
 /**
  * You can add C++-only headers here

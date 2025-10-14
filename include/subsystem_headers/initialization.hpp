@@ -40,6 +40,14 @@ extern pros::Motor hood;
 extern pros::ADIDigitalOut midgoal;
 extern bool mid_descore_state;
 extern pros::ADIDigitalOut middescore;
+extern pros::ADIDigitalOut highgoaldescore;
+extern bool highgoal_descore_state;
+
+extern pros::Optical high_goal_sensor;
+extern pros::ADIDigitalIn limit_switch;
+
+extern pros::ADIDigitalOut matchloader;
+extern bool matchloader_state;
 
 enum intakeState {
     NONE,

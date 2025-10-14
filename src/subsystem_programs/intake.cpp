@@ -38,7 +38,10 @@ void intakeUpdate()
         if(intake == HIGH_GOAL){
             intake = NONE;
         } else {
-            intake = HIGH_GOAL;
+            if(high_goal_sensor.get_hue() > 20 && high_goal_sensor.get_hue() < 40 && limit_switch.get_value() == 1) {
+               intake = HIGH_GOAL;
+            }
+            
         }
     }
     if(controller1.get_digital_new_press(DIGITAL_R2))
@@ -61,7 +64,7 @@ void intakeChange()
     Goal for this function: With inputs defined from intakeUpdate(), create a function that changes what the intake does
 
     */
-
+    
     if(intake == NONE)
     {
         // If not intaking, disengage everything
@@ -72,44 +75,48 @@ void intakeChange()
     } 
     else if (intake == INTAKE_INDEX)
     {
+
         // if indexing, start rotating flaps at ~half speed, rotate hood backwards at ~1/4 speed, and disengage middle goal scoring
 
-        hood.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-        midgoal.set_value(LOW);
-        preroller.move(127);
-        rollers.move(60);
-        hood.move(-30);
+            hood.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+            midgoal.set_value(LOW);
+            preroller.move(127);
 
-        if(indexer.get_hue() > 0 && indexer.get_hue() < 30 && preroller.get_power() > 5)
-        {
-            // If the indexer detects a red color and the preroller is stalling (preroller max wattage is 5.5, so anywhere above 5 is fine), then start spinning the rollers fast for a brief amount of time
+            rollers.move(80);
+            
+            hood.move(-30);
 
-            rollers.move(127);
-            pros::delay(50);
-            rollers.move(60);
-        }
-        if (indexer.get_hue() > 190 && indexer.get_hue() < 230)
-        {
+            if((indexer.get_hue() > 0 && indexer.get_hue() < 30) || (indexer.get_hue() > 190 && indexer.get_hue() < 230) && preroller.get_power() > 5.2)
+            {
+                // If the indexer detects a red color and the preroller is stalling (preroller max wattage is 5.5, so anywhere above 5 is fine), then start spinning the rollers fast for a brief amount of time
 
-            // If the indexer detects a blue color, start rolling rollers and preroller backwards to reject the block
+                rollers.move(127);
+                pros::delay(50);
+            }
+            /*
+            if (indexer.get_hue() > 190 && indexer.get_hue() < 230)
+            {
 
-            while (indexer.get_hue() > 190 && indexer.get_hue() < 230)
-            {   
-                if(intake != NONE) // failsafe if any stalling happens and we decide to switch intake to stop running
+                // If the indexer detects a blue color, start rolling rollers and preroller backwards to reject the block
+
+                while (indexer.get_hue() > 190 && indexer.get_hue() < 230)
+                {   
+                    if(intake != NONE) // failsafe if any stalling happens and we decide to switch intake to stop running
+                    {
+                        rollers.move(-60);
+                        preroller.move(-127);
+                    }
+                    
+                }
+
+                if(intake != NONE)
                 {
-                    rollers.move(-60);
-                    preroller.move(-127);
+                    pros::delay(100); // delay a little bit after the block goes out of range of the indexer to allow for it to be ejected
+                    preroller.move(127);
                 }
                 
             }
-
-            if(intake != NONE)
-            {
-                pros::delay(100); // delay a little bit after the block goes out of range of the indexer to allow for it to be ejected
-                preroller.move(127);
-            }
-            
-        }
+            */
     } 
     else if (intake == HIGH_GOAL)
     {

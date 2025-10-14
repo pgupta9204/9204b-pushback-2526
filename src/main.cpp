@@ -23,7 +23,7 @@ void on_center_button() {
  */
 void initialize() {
 	pros::lcd::initialize();
-
+    pros::lcd::set_text(1, "${matchloader_state}"); 
 	// pros::lcd::print(1, "Rotation Sensor: %i", vertical_tracker.get_position());
 	pros::lcd::register_btn1_cb(on_center_button); 
 }
@@ -73,22 +73,27 @@ void autonomous() {}
  * task, not resume it from where it left off.
  */
 
- void intakeThread(void* param) {
+ void intakeThread(void* param) // thread for intake manipulation
+ {
         indexer.set_integration_time(3);
         indexer.set_led_pwm(100);
+        high_goal_sensor.set_led_pwm(100);
         while (true) {
             intakeChange();
             pros::delay(20);
         }
     }
 
-void opcontrol() {
+void opcontrol() // general drivercontrol code, has all functions listed in previous places
+{
 	// loop forever
     pros::Task intake_update(intakeThread, nullptr);
     while (true) {
 
         intakeUpdate();
         midGoalDescoreState();
+        highGoalDescoreState();
+        matchloaderToggle();
         drive();
         pros::delay(10);
     }
