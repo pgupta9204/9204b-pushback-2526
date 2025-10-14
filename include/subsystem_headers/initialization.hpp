@@ -58,3 +58,9 @@ enum intakeState {
 };
 
 extern intakeState intake;
+
+// sensory boolean declarations
+
+extern bool indexer_red_detected;
+extern bool indexer_blue_detected;
+extern bool high_goal_detected;

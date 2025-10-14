@@ -38,7 +38,8 @@ void intakeUpdate()
         if(intake == HIGH_GOAL){
             intake = NONE;
         } else {
-            if(high_goal_sensor.get_hue() > 20 && high_goal_sensor.get_hue() < 40 && limit_switch.get_value() == 1) {
+            if(high_goal_detected) // only allow scoring on long goal if the optical sensor detects a high goal
+            {
                intake = HIGH_GOAL;
             }
             
@@ -86,7 +87,7 @@ void intakeChange()
             
             hood.move(-30);
 
-            if((indexer.get_hue() > 0 && indexer.get_hue() < 30) || (indexer.get_hue() > 190 && indexer.get_hue() < 230) && preroller.get_power() > 5.2)
+            if((indexer_red_detected || indexer_blue_detected) && preroller.get_power() > 5.2)
             {
                 // If the indexer detects a red color and the preroller is stalling (preroller max wattage is 5.5, so anywhere above 5 is fine), then start spinning the rollers fast for a brief amount of time
 
@@ -94,18 +95,15 @@ void intakeChange()
                 pros::delay(50);
             }
             /*
-            if (indexer.get_hue() > 190 && indexer.get_hue() < 230)
+            if (indexer_blue_detected)
             {
 
                 // If the indexer detects a blue color, start rolling rollers and preroller backwards to reject the block
 
-                while (indexer.get_hue() > 190 && indexer.get_hue() < 230)
+                while (indexer_blue_detected || intake != NONE)
                 {   
-                    if(intake != NONE) // failsafe if any stalling happens and we decide to switch intake to stop running
-                    {
-                        rollers.move(-60);
-                        preroller.move(-127);
-                    }
+                    rollers.move(-60);
+                    preroller.move(-127);
                     
                 }
 
@@ -133,7 +131,7 @@ void intakeChange()
             {
                 // if it fulfills that case, reverse the rollers for a little and then start rolling them again
                 rollers.move(-127);
-                pros::delay(50);
+                pros::delay(100);
                 rollers.move(127);
             }
         }
