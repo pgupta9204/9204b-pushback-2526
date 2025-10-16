@@ -22,9 +22,19 @@ void on_center_button() {
  * to keep execution time for this mode under a few seconds.
  */
 void initialize() {
-	pros::lcd::initialize();
-	// pros::lcd::print(1, "Rotation Sensor: %i", vertical_tracker.get_position());
-	pros::lcd::register_btn1_cb(on_center_button); 
+	pros::lcd::initialize(); // initialize brain screen
+    chassis.calibrate(); // calibrate sensors
+    // print position to brain screen
+    pros::Task screen_task([&]() {
+        while (true) {
+            // print robot location to the brain screen
+            pros::lcd::print(0, "X: %f", chassis.getPose().x); // x
+            pros::lcd::print(1, "Y: %f", chassis.getPose().y); // y
+            pros::lcd::print(2, "Theta: %f", chassis.getPose().theta); // heading
+            // delay to save resources
+            pros::delay(20);
+        }
+    }); 
 }
 
 /**
@@ -56,7 +66,15 @@ void competition_initialize() {}
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
-void autonomous() {}
+void autonomous() 
+{
+    // set position to x:0, y:0, heading:0
+    chassis.setPose(0, 0, 0);
+    // turn to face heading 90 with a very long timeout
+    // chassis.turnToHeading(90, 100000);
+
+    chassis.moveToPoint(0, 48, 10000); // drive to x:0, y:24 with a very long timeout
+}
 
 /**
  * Runs the operator control code. This function will be started in its own task
@@ -87,7 +105,7 @@ void rumbleThread(void* param) // thread for rumble feedback
 {
     while (true) 
     {
-        rumbleHandler(high_goal_detected && !(intake == HIGH_GOAL), ".-.-");
+        rumbleHandler(high_goal_detected && !(intake == HIGH_GOAL), "-");
         pros::delay(20);
     }
 }
@@ -96,6 +114,7 @@ void opcontrol() // general drivercontrol code, has all functions listed in prev
 {
 	// loop forever
     pros::Task intake_update(intakeThread, nullptr);
+    pros::Task rumble_update(rumbleThread, nullptr);
     while (true) 
     {
         intakeUpdate();
