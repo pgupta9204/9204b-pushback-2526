@@ -81,12 +81,7 @@ void competition_initialize() {}
  */
 void autonomous() 
 {
-    // set position to x:0, y:0, heading:0
-    // chassis.setPose(0, 0, 0);
-    // turn to face heading 90 with a very long timeout
-    // chassis.turnToHeading(90, 100000);
-
-    // chassis.moveToPoint(0, 48, 10000); // drive to x:0, y:24 with a very long timeout
+    
     // Right side autonomous
     chassis.setPose(-54.8375, -15.975, 90);
     pros::Task auto_intake(auto_intake_thread, nullptr);
