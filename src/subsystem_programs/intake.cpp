@@ -94,7 +94,7 @@ void intakeChange()
                 rollers.move(127);
                 pros::delay(50);
             }
-            /*
+            
             if (indexer_blue_detected)
             {
 
@@ -114,7 +114,7 @@ void intakeChange()
                 }
                 
             }
-            */
+            
     } 
     else if (intake == HIGH_GOAL)
     {

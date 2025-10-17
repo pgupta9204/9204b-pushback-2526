@@ -24,6 +24,16 @@ void auto_intake_thread(void* param)
     while (pros::competition::is_autonomous()) 
     {
         intakeChange();
+        
+        pros::delay(20);
+    }
+}
+
+void auto_boolean_update_thread(void* param)
+{
+    while (pros::competition::is_autonomous()) 
+    {
+        booleanUpdate();
         pros::delay(20);
     }
 }
@@ -85,6 +95,7 @@ void autonomous()
     // Right side autonomous
     chassis.setPose(-54.8375, -15.975, 90);
     pros::Task auto_intake(auto_intake_thread, nullptr);
+    pros::Task auto_boolean_update(auto_boolean_update_thread, nullptr);
     intake = INTAKE_INDEX;
     chassis.moveToPoint(-19.508, -23.363, 3000, {.maxSpeed = 60}); 
     chassis.moveToPoint(-6.317, -40.401, 3000, {.maxSpeed = 80});
@@ -94,6 +105,16 @@ void autonomous()
     //intake = LOW_GOAL;
     chassis.moveToPoint(-46, -46, 2000, {.forwards = false, .maxSpeed = 80});
     chassis.turnToHeading(-90, 1000);
+    chassis.moveToPoint(-27, -48.5, 3000, {.forwards = false, .maxSpeed = 80});
+    while(!high_goal_detected)
+    {
+        pros::delay(20);
+    }
+    intake = HIGH_GOAL;
+    pros::delay(1000);
+    intake = INTAKE_INDEX;
+    matchloader_state = true;
+    matchloader.set_value(HIGH);
 
 }
 
