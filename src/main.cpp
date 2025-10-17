@@ -15,6 +15,19 @@ void on_center_button() {
 	
 }
 
+
+void auto_intake_thread(void* param)
+{
+    indexer.set_integration_time(3);
+    indexer.set_led_pwm(100);
+    high_goal_sensor.set_led_pwm(100);
+    while (pros::competition::is_autonomous()) 
+    {
+        intakeChange();
+        pros::delay(20);
+    }
+}
+
 /**
  * Runs initialization code. This occurs as soon as the program is started.
  *
@@ -76,9 +89,16 @@ void autonomous()
     // chassis.moveToPoint(0, 48, 10000); // drive to x:0, y:24 with a very long timeout
 
     chassis.setPose(-54.8375, -15.975, 90);
-
-    
-    
+    pros::Task auto_intake(auto_intake_thread, nullptr);
+    intake = INTAKE_INDEX;
+    chassis.moveToPoint(-19.508, -23.363, 3000, {.maxSpeed = 60}); 
+    chassis.moveToPoint(-6.317, -40.401, 3000, {.maxSpeed = 80});
+    chassis.moveToPoint(-17.25, -19.25, 2000, {.forwards = false, .maxSpeed = 80});
+    chassis.turnToHeading(45, 1000);
+    //chassis.waitUntilDone();
+    //intake = LOW_GOAL;
+    chassis.moveToPoint(-46, -46, 2000, {.forwards = false, .maxSpeed = 80});
+    chassis.turnToHeading(-90, 1000);
 
 }
 
@@ -95,6 +115,8 @@ void autonomous()
  * operator control task will be stopped. Re-enabling the robot will restart the
  * task, not resume it from where it left off.
  */
+
+
 
 void intakeThread(void* param) // thread for intake manipulation
 {
