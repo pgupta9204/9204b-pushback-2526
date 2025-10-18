@@ -99,11 +99,17 @@ void autonomous()
     intake = INTAKE_INDEX;
     chassis.moveToPoint(-19.508, -23.363, 3000, {.maxSpeed = 60}); 
     chassis.moveToPoint(-6.317, -40.401, 3000, {.maxSpeed = 80});
-    chassis.moveToPoint(-17.25, -19.25, 2000, {.forwards = false, .maxSpeed = 80});
+    chassis.moveToPoint(-17.25, -19.25, 2000, {.forwards = false});
     chassis.turnToHeading(45, 1000);
-    //chassis.waitUntilDone();
-    //intake = LOW_GOAL;
-    chassis.moveToPoint(-46, -46, 2000, {.forwards = false, .maxSpeed = 80});
+    chassis.waitUntilDone();
+    intake = LOW_GOAL;
+    while(!indexer_red_detected)
+    {
+        pros::delay(20);
+    }
+    pros::delay(100);
+    intake = INTAKE_INDEX;
+    chassis.moveToPoint(-46, -46, 2000, {.forwards = false});
     chassis.turnToHeading(-90, 1000);
     chassis.moveToPoint(-27, -48.5, 3000, {.forwards = false, .maxSpeed = 80});
     while(!high_goal_detected)
@@ -115,6 +121,17 @@ void autonomous()
     intake = INTAKE_INDEX;
     matchloader_state = true;
     matchloader.set_value(HIGH);
+    chassis.moveToPoint(-56.882, -48.5, 3000, {.maxSpeed = 80});
+    while(!indexer_blue_detected)
+    {
+        pros::delay(20);
+    }
+    chassis.moveToPoint(-27, -48.5, 3000, {.forwards = false, .maxSpeed = 80});
+    while(!high_goal_detected)
+    {
+        pros::delay(20);
+    }
+    intake = HIGH_GOAL;
 
 }
 
