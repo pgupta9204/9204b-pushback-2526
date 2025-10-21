@@ -100,7 +100,7 @@ void intakeChange()
 
                 // If the indexer detects a blue color, start rolling rollers and preroller backwards to reject the block
 
-                while (indexer_blue_detected || intake != NONE)
+                while (indexer_blue_detected && intake == INTAKE_INDEX)
                 {   
                     rollers.move(-60);
                     preroller.move(-127);
@@ -110,6 +110,7 @@ void intakeChange()
                 if(intake != NONE)
                 {
                     pros::delay(100); // delay a little bit after the block goes out of range of the indexer to allow for it to be ejected
+                    rollers.move(80);
                     preroller.move(127);
                 }
                 
