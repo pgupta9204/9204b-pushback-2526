@@ -57,7 +57,15 @@ enum intakeState {
     HIGH_GOAL
 };
 
+enum teamColor {
+    SKILLS,
+    RED,
+    BLUE
+};
+
 extern intakeState intake;
+
+extern teamColor current_team_color;
 
 // sensory boolean declarations
 

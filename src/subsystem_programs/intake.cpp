@@ -87,20 +87,43 @@ void intakeChange()
             
             hood.move(-30);
 
-            if((indexer_red_detected || indexer_blue_detected) && preroller.get_power() > 5.2)
+            bool index;
+            bool eject;
+
+
+            if(current_team_color == RED)
             {
-                // If the indexer detects a red color and the preroller is stalling (preroller max wattage is 5.5, so anywhere above 5 is fine), then start spinning the rollers fast for a brief amount of time
+                // red team
+                index = indexer_red_detected;
+                eject = indexer_blue_detected;
+            } 
+            else if (current_team_color == BLUE)
+            {
+                // blue team
+                index = indexer_blue_detected;
+                eject = indexer_red_detected;
+            }
+            else if (current_team_color == SKILLS)
+            {
+                // skills mode
+                index = indexer_red_detected || indexer_blue_detected; 
+                eject = false;
+            }
+
+            if((index) && preroller.get_power() > 5.2)
+            {
+                // If the indexer detects our color and the preroller is stalling (preroller max wattage is 5.5, so anywhere above 5 is fine), then start spinning the rollers fast for a brief amount of time
 
                 rollers.move(127);
                 pros::delay(50);
             }
             
-            if (indexer_blue_detected)
+            if (eject)
             {
 
-                // If the indexer detects a blue color, start rolling rollers and preroller backwards to reject the block
+                // If the indexer detects our opponents color, start rolling rollers and preroller backwards to reject the block
 
-                while (indexer_blue_detected && intake == INTAKE_INDEX)
+                while (eject && intake == INTAKE_INDEX)
                 {   
                     rollers.move(-60);
                     preroller.move(-127);

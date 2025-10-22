@@ -104,3 +104,8 @@ pros::ADIDigitalIn limit_switch('E');
 
 
 intakeState intake = NONE;
+
+
+
+
+bool current_team_color = RED;

@@ -97,18 +97,26 @@ void autonomous()
     pros::Task auto_intake(auto_intake_thread, nullptr);
     pros::Task auto_boolean_update(auto_boolean_update_thread, nullptr);
     intake = INTAKE_INDEX;
-    chassis.moveToPoint(-19.508, -23.363, 3000, {.maxSpeed = 60}); 
+    chassis.moveToPoint(-19.508, -23.063, 3000, {.maxSpeed = 60}); 
+    chassis.waitUntil(34);
+    // matchloader_state = true;
+    // matchloader.set_value(HIGH);
     chassis.turnToHeading(150, 1000);
     chassis.moveToPoint(-7.317, -42.401, 3000, {.maxSpeed = 80});
     matchloader_state = false;
     matchloader.set_value(LOW);
-    chassis.moveToPoint(-17.75, -21.50, 2000, {.forwards = false});
+    chassis.moveToPoint(-16.75, -20.50, 2000, {.forwards = false});
     
     chassis.turnToHeading(45, 1000);
-    chassis.waitUntilDone();
-    intake = LOW_GOAL;
-    pros::delay(200);
-    intake = INTAKE_INDEX;
+    // chassis.waitUntilDone();
+    // intake = LOW_GOAL;
+    // while(!indexer_team_color_detected)
+    // {
+    //     pros::delay(10);
+    // }
+    
+    // pros::delay(300);
+    // intake = INTAKE_INDEX;
     chassis.moveToPoint(-46, -46, 2000, {.forwards = false});
     chassis.turnToHeading(-90, 1000);
     chassis.moveToPoint(-27, -48, 3000, {.forwards = false, .maxSpeed = 80});
@@ -118,11 +126,25 @@ void autonomous()
     intake = INTAKE_INDEX;
     matchloader_state = true;
     matchloader.set_value(HIGH);
-    chassis.moveToPoint(-58.882, -46.5, 3000, {.maxSpeed = 50});
-    while(!indexer_blue_detected)
+    chassis.moveToPoint(-58.882, -46.5, 3000, {.maxSpeed = 55});
+    
+    if(current_team_color == RED)
     {
-        pros::delay(20);
+        while(!indexer_blue_detected)
+        {
+            pros::delay(20);
+        }
     }
+    else if (current_team_color == BLUE)
+    {
+        while(!indexer_red_detected)
+        {
+            pros::delay(20);
+        }
+    }
+    
+    
+    pros::delay(100);
     matchloader_state = false;
     matchloader.set_value(LOW);
     chassis.moveToPoint(-27, -48, 3000, {.forwards = false, .maxSpeed = 80});
