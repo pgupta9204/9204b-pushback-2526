@@ -63,9 +63,17 @@ enum teamColor {
     BLUE
 };
 
+enum auton {
+    SKILLS_AUTON,
+    RIGHT_8,
+    LEFT_8
+};
+
 extern intakeState intake;
 
 extern teamColor current_team_color;
+
+extern auton selected_auton;
 
 // sensory boolean declarations
 

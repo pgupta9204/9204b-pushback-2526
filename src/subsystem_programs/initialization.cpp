@@ -107,5 +107,3 @@ intakeState intake = NONE;
 
 
 
-
-teamColor current_team_color = RED;

@@ -84,6 +84,7 @@ void opcontrol(void);
 #include "subsystem_headers/matchloader.hpp"
 #include "subsystem_headers/sensor_booleans.hpp"
 #include "subsystem_headers/rumble_handler.hpp"
+#include "subsystem_headers/autons.hpp"
 
 /**
  * You can add C++-only headers here
