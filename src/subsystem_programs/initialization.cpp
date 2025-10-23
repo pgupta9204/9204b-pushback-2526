@@ -108,4 +108,4 @@ intakeState intake = NONE;
 
 
 
-bool current_team_color = RED;
+teamColor current_team_color = RED;
