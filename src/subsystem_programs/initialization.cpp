@@ -104,6 +104,7 @@ pros::ADIDigitalIn limit_switch('E');
 
 
 intakeState intake = NONE;
-
+teamColor current_team_color = RED;
+auton selected_auton = RIGHT_8;
 
 

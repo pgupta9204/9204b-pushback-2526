@@ -44,23 +44,81 @@ void auto_boolean_update_thread(void* param)
  */
 void initialize() {
 
-    teamColor current_team_color = RED;
+    teamColor current_team_color = SKILLS;
     auton selected_auton = RIGHT_8;
+    int auton_index = 0;
+    int team_color_index = 0; // start on skills
 
 
 	pros::lcd::initialize(); // initialize brain screen
     chassis.calibrate(); // calibrate sensors
     // print position to brain screen
-    pros::Task screen_task([&]() {
-        while (true) {
-            // print robot location to the brain screen
-            pros::lcd::print(0, "X: %f", chassis.getPose().x); // x
-            pros::lcd::print(1, "Y: %f", chassis.getPose().y); // y
-            pros::lcd::print(2, "Theta: %f", chassis.getPose().theta); // heading
-            // delay to save resources
-            pros::delay(20);
+    // pros::Task screen_task([&]() {
+    //     while (true) {
+    //         // print robot location to the brain screen
+    //         pros::lcd::print(0, "X: %f", chassis.getPose().x); // x
+    //         pros::lcd::print(1, "Y: %f", chassis.getPose().y); // y
+    //         pros::lcd::print(2, "Theta: %f", chassis.getPose().theta); // heading
+    //         // delay to save resources
+    //         pros::delay(20);
+    //     }
+    // }); 
+    
+    while(true)
+    {
+        // wait for user to select team color and auton
+        if(pros::lcd::read_buttons() & LCD_BTN_LEFT)
+        {
+            team_color_index++;
+            team_color_index %= 3;
         }
-    }); 
+
+        if(pros::lcd::read_buttons() & LCD_BTN_CENTER)
+        {
+            auton_index++;
+            auton_index %= 3;
+        }
+
+        // display selections
+        pros::lcd::clear();
+        pros::lcd::print(0, "Team Color:");
+        
+        if (team_color_index == SKILLS)
+        {
+            pros::lcd::print(1, "SKILLS");
+            current_team_color = SKILLS;
+        }
+        else if (team_color_index == RED)
+        {
+            pros::lcd::print(1, "RED");
+            current_team_color = RED;
+        }
+        else if (team_color_index == BLUE)
+        {
+            pros::lcd::print(1, "BLUE");
+            current_team_color = BLUE;
+        }
+
+        pros::lcd::print(3, "Auton:");
+        if (auton_index == SKILLS_AUTON)
+        {
+            pros::lcd::print(4, "SKILLS AUTON");
+            selected_auton = SKILLS_AUTON;
+        }
+        else if (auton_index == RIGHT_8)
+        {
+            pros::lcd::print(4, "RIGHT 8");
+            selected_auton = RIGHT_8;
+        }
+        else if (auton_index == LEFT_8)
+        {
+            pros::lcd::print(4, "LEFT 8");
+            selected_auton = LEFT_8;
+        }
+
+        pros::delay(200);
+    }
+
 }
 
 /**

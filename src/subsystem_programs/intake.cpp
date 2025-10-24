@@ -125,12 +125,28 @@ void intakeChange()
 
                 while (eject && intake == INTAKE_INDEX)
                 {   
+                    if(current_team_color == RED)
+                    {
+                        // red team
+                        eject = indexer_blue_detected;
+                    } 
+                    else if (current_team_color == BLUE)
+                    {
+                        // blue team
+                        eject = indexer_red_detected;
+                    }
+                    else if (current_team_color == SKILLS)
+                    {
+                        // skills mode
+                        eject = false;
+                    }
+                    
                     rollers.move(-60);
                     preroller.move(-127);
                     
                 }
 
-                if(intake != NONE)
+                if(intake == INTAKE_INDEX)
                 {
                     pros::delay(100); // delay a little bit after the block goes out of range of the indexer to allow for it to be ejected
                     rollers.move(80);

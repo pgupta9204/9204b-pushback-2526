@@ -8,12 +8,12 @@ void right_8()
     chassis.setPose(-54.8375, -15.975, 90);
     
     intake = INTAKE_INDEX;
-    chassis.moveToPoint(-19.508, -23.063, 3000, {.maxSpeed = 60}); 
+    chassis.moveToPoint(-19.508, -22.863, 3000, {.maxSpeed = 60}); 
     chassis.waitUntil(34);
     // matchloader_state = true;
     // matchloader.set_value(HIGH);
     chassis.turnToHeading(150, 1000);
-    chassis.moveToPoint(-7.317, -42.401, 3000, {.maxSpeed = 80});
+    chassis.moveToPoint(-7.317, -40.401, 3000, {.maxSpeed = 80});
     matchloader_state = false;
     matchloader.set_value(LOW);
     chassis.moveToPoint(-16.75, -20.50, 2000, {.forwards = false});
