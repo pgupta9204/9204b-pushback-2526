@@ -129,3 +129,12 @@ void left_8()
     }
     intake = HIGH_GOAL;
 }
+
+void skills_auton()
+{
+    // Skills autonomous
+    pros::Task auto_intake(auto_intake_thread, nullptr);
+    pros::Task auto_boolean_update(auto_boolean_update_thread, nullptr);
+    chassis.setPose(0, 0, 0);
+    chassis.moveToPoint(0, -8, 2000, {.forwards = false});
+}

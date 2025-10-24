@@ -162,6 +162,10 @@ void autonomous()
     {
         left_8();
     }
+    else if (selected_auton == SKILLS_AUTON)
+    {
+        skills_auton();
+    }
     
 
 }
