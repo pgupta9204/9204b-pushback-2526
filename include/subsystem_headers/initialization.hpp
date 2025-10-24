@@ -66,7 +66,8 @@ enum teamColor {
 enum auton {
     SKILLS_AUTON,
     RIGHT_8,
-    LEFT_8
+    LEFT_8,
+    SAWP
 };
 
 extern intakeState intake;

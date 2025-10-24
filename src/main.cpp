@@ -45,7 +45,7 @@ void auto_boolean_update_thread(void* param)
 void initialize() {
 
     teamColor current_team_color = SKILLS;
-    auton selected_auton = RIGHT_8;
+    auton selected_auton = SKILLS_AUTON;
     int auton_index = 0;
     int team_color_index = 0; // start on skills
 
@@ -76,7 +76,7 @@ void initialize() {
         if(pros::lcd::read_buttons() & LCD_BTN_CENTER)
         {
             auton_index++;
-            auton_index %= 3;
+            auton_index %= 4;
         }
 
         // display selections
@@ -114,6 +114,11 @@ void initialize() {
         {
             pros::lcd::print(4, "LEFT 8");
             selected_auton = LEFT_8;
+        }
+        else if (auton_index == SAWP)
+        {
+            pros::lcd::print(4, "SAWP");
+            selected_auton = SAWP;
         }
 
         pros::delay(20);
@@ -165,6 +170,10 @@ void autonomous()
     else if (selected_auton == SKILLS_AUTON)
     {
         skills_auton();
+    }
+    else if (selected_auton == SAWP)
+    {
+        sawp();
     }
     
 
