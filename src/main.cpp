@@ -116,7 +116,7 @@ void initialize() {
             selected_auton = LEFT_8;
         }
 
-        pros::delay(200);
+        pros::delay(20);
     }
 
 }
