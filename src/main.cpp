@@ -44,10 +44,10 @@ void auto_boolean_update_thread(void* param)
  */
 void initialize() {
 
-    teamColor current_team_color = SKILLS;
-    auton selected_auton = SKILLS_AUTON;
-    int auton_index = 0;
-    int team_color_index = 0; // start on skills
+    // teamColor current_team_color = SKILLS;
+    // auton selected_auton = SKILLS_AUTON;
+    // int auton_index = 0;
+    // int team_color_index = 0; // start on skills
 
 
 	pros::lcd::initialize(); // initialize brain screen
@@ -64,65 +64,65 @@ void initialize() {
     //     }
     // }); 
     
-    while(true)
-    {
-        // wait for user to select team color and auton
-        if(pros::lcd::read_buttons() & LCD_BTN_LEFT)
-        {
-            team_color_index++;
-            team_color_index %= 3;
-        }
+    // while(true)
+    // {
+    //     // wait for user to select team color and auton
+    //     if(pros::lcd::read_buttons() == LCD_BTN_LEFT)
+    //     {
+    //         team_color_index++;
+    //         team_color_index %= 3;
+    //     }
 
-        if(pros::lcd::read_buttons() & LCD_BTN_CENTER)
-        {
-            auton_index++;
-            auton_index %= 4;
-        }
+    //     if(pros::lcd::read_buttons() == LCD_BTN_CENTER)
+    //     {
+    //         auton_index++;
+    //         auton_index %= 4;
+    //     }
 
-        // display selections
-        pros::lcd::clear();
-        pros::lcd::print(0, "Team Color:");
+    //     // display selections
+    //     pros::lcd::clear();
+    //     pros::lcd::print(0, "Team Color:");
         
-        if (team_color_index == SKILLS)
-        {
-            pros::lcd::print(1, "SKILLS");
-            current_team_color = SKILLS;
-        }
-        else if (team_color_index == RED)
-        {
-            pros::lcd::print(1, "RED");
-            current_team_color = RED;
-        }
-        else if (team_color_index == BLUE)
-        {
-            pros::lcd::print(1, "BLUE");
-            current_team_color = BLUE;
-        }
+    //     if (team_color_index == 0)
+    //     {
+    //         pros::lcd::print(1, "SKILLS");
+    //         current_team_color = SKILLS;
+    //     }
+    //     else if (team_color_index == 1)
+    //     {
+    //         pros::lcd::print(1, "RED");
+    //         current_team_color = RED;
+    //     }
+    //     else if (team_color_index == 2)
+    //     {
+    //         pros::lcd::print(1, "BLUE");
+    //         current_team_color = BLUE;
+    //     }
 
-        pros::lcd::print(3, "Auton:");
-        if (auton_index == SKILLS_AUTON)
-        {
-            pros::lcd::print(4, "SKILLS AUTON");
-            selected_auton = SKILLS_AUTON;
-        }
-        else if (auton_index == RIGHT_8)
-        {
-            pros::lcd::print(4, "RIGHT 8");
-            selected_auton = RIGHT_8;
-        }
-        else if (auton_index == LEFT_8)
-        {
-            pros::lcd::print(4, "LEFT 8");
-            selected_auton = LEFT_8;
-        }
-        else if (auton_index == SAWP)
-        {
-            pros::lcd::print(4, "SAWP");
-            selected_auton = SAWP;
-        }
+    //     pros::lcd::print(3, "Auton:");
+    //     if (auton_index == 0)
+    //     {
+    //         pros::lcd::print(4, "SKILLS AUTON");
+    //         selected_auton = SKILLS_AUTON;
+    //     }
+    //     else if (auton_index == 1)
+    //     {
+    //         pros::lcd::print(4, "RIGHT 8");
+    //         selected_auton = RIGHT_8;
+    //     }
+    //     else if (auton_index == 2)
+    //     {
+    //         pros::lcd::print(4, "LEFT 8");
+    //         selected_auton = LEFT_8;
+    //     }
+    //     else if (auton_index == 3)
+    //     {
+    //         pros::lcd::print(4, "SAWP");
+    //         selected_auton = SAWP;
+    //     }
 
-        pros::delay(20);
-    }
+    //     pros::delay(200);
+    // }
 
 }
 
