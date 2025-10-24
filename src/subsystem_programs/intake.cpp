@@ -38,11 +38,13 @@ void intakeUpdate()
         if(intake == HIGH_GOAL){
             intake = NONE;
         } else {
-            if(high_goal_detected) // only allow scoring on long goal if the optical sensor detects a high goal
-            {
-               intake = HIGH_GOAL;
-            }
+            // if(high_goal_detected) // only allow scoring on long goal if the optical sensor detects a high goal
+            // {
+            //    intake = HIGH_GOAL;
+            // }
             
+            intake = HIGH_GOAL;
+
         }
     }
     if(controller1.get_digital_new_press(DIGITAL_R2))
@@ -110,12 +112,21 @@ void intakeChange()
                 eject = false;
             }
 
-            if((index) && preroller.get_power() > 5.2)
+            if(preroller.get_power() > 5.2)
             {
                 // If the indexer detects our color and the preroller is stalling (preroller max wattage is 5.5, so anywhere above 5 is fine), then start spinning the rollers fast for a brief amount of time
-
-                rollers.move(127);
-                pros::delay(50);
+                if(index){
+                    rollers.move(127);
+                    pros::delay(50);
+                }
+                else if(pros::competition::is_autonomous())
+                {
+                    preroller.move(-60);
+                    pros::delay(100);
+                    preroller.move(127);
+                    pros::delay(100);
+                }
+                
             }
             
             if (eject)
