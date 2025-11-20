@@ -81,7 +81,7 @@ void intakeChange()
 
         // if indexing, start rotating flaps at ~half speed, rotate hood backwards at ~1/4 speed, and disengage middle goal scoring
 
-            hood.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+            // hood.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
             midgoal.set_value(LOW);
             preroller.move(127);
 
@@ -119,13 +119,13 @@ void intakeChange()
                     rollers.move(127);
                     pros::delay(50);
                 }
-                else if(pros::competition::is_autonomous())
-                {
-                    preroller.move(-60);
-                    pros::delay(100);
-                    preroller.move(127);
-                    pros::delay(100);
-                }
+                // else if(pros::competition::is_autonomous())
+                // {
+                //     preroller.move(-60);
+                //     pros::delay(100);
+                //     preroller.move(127);
+                //     pros::delay(100);
+                // }
                 
             }
             
@@ -199,7 +199,7 @@ void intakeChange()
     else if (intake == MID_GOAL)
     {
         // if scoring on upper center (middle) goal, spin everything, engage middle goal scoring, and spin hood at half speed to not eject blocks too fast
-        midgoal.set_value(HIGH);
+        // midgoal.set_value(HIGH);
         preroller.move(127);
         rollers.move(127);
         hood.move(64);

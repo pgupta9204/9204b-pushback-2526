@@ -2,6 +2,15 @@
 
 // goal - create 2 toggle functions that toggle the descoring pneumatics for middle and long goal
 
+void highGoalDescoreToggle()
+{
+    
+    highgoal_descore_state = !highgoal_descore_state;
+    highgoaldescore.set_value(highgoal_descore_state);
+        
+    
+}
+
 void midGoalDescoreState()
 {
     if(controller1.get_digital_new_press(DIGITAL_Y))
@@ -16,8 +25,7 @@ void highGoalDescoreState()
 {
     if(controller1.get_digital_new_press(DIGITAL_B))
     {
-        highgoal_descore_state = !highgoal_descore_state;
-        highgoaldescore.set_value(highgoal_descore_state);
+        highGoalDescoreToggle();
         
     }
 }

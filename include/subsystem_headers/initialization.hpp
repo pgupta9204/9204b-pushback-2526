@@ -66,7 +66,9 @@ enum teamColor {
 enum auton {
     SKILLS_AUTON,
     RIGHT_8,
+    RIGHT_4_WING,
     LEFT_8,
+    LEFT_4_WING,
     SAWP
 };
 

@@ -1,0 +1,65 @@
+-54.684, -15.851, 100
+-54.264, -17.807, 100
+-53.844, -19.762, 100
+-53.425, -21.718, 100
+-53.005, -23.673, 100
+-52.586, -25.629, 100
+-52.166, -27.584, 100
+-51.746, -29.539, 100
+-51.327, -31.495, 100
+-50.907, -33.45, 100
+-50.488, -35.406, 100
+-50.068, -37.361, 100
+-49.649, -39.317, 100
+-49.229, -41.272, 100
+-48.809, -43.228, 100
+-48.39, -45.183, 100
+-48.142, -47, 100
+-50.142, -47, 100
+-52.142, -47, 100
+-54.142, -47, 100
+-56.142, -47, 100
+-56.356, -47, 100
+-54.356, -47, 100
+-52.356, -47, 100
+-50.356, -47, 100
+-48.356, -47, 100
+-46.356, -47, 100
+-44.356, -47, 100
+-42.356, -47, 100
+-40.356, -47, 100
+-38.356, -47, 100
+-36.356, -47, 98.013
+-34.356, -47, 95.386
+-32.356, -47, 92.685
+-30.356, -47, 89.902
+-31.644, -47, 88.064
+-33.644, -47, 85.131
+-34.825, -46.38, 83.117
+-34.284, -44.455, 80.002
+-33.742, -42.53, 76.762
+-33.2, -40.605, 73.378
+-32.658, -38.679, 69.831
+-32.116, -36.754, 66.094
+-31.574, -34.829, 62.132
+-30.488, -33.622, 58.72
+-28.488, -33.622, 54.222
+-26.488, -33.622, 49.315
+-24.488, -33.622, 43.863
+-22.488, -33.622, 37.63
+-20.488, -33.622, 30.133
+-18.488, -33.622, 20
+-16.943, -33.622, 0
+-16.943, -33.622, 0
+3.057, -33.622, 0
+endData
+127
+100
+200
+-54.684, -15.851, -51.342, -31.426, -51.342, -31.426, -48, -47
+-48, -47, -52.624, -47, -52.624, -47, -57.249, -47
+-57.249, -47, -43.624, -47, -43.624, -47, -30, -47
+-30, -47, -32.5, -47, -32.5, -47, -35, -47
+-35, -47, -33.117, -40.311, -33.117, -40.311, -31.234, -33.622
+-31.234, -33.622, -24.088, -33.622, -24.088, -33.622, -16.943, -33.622
+#PATH.JERRYIO-DATA {"appVersion":"0.10.0","format":"LemLib v0.5","gc":{"robotWidth":15,"robotHeight":15,"robotIsHolonomic":false,"showRobot":true,"uol":2.54,"pointDensity":2,"controlMagnetDistance":1.968503937007874,"fieldImage":{"displayName":"V5RC 2026 - Push Back","signature":"V5RC-PushBack-H2H-TopDownHighlighted-TileColor66_71","origin":{"__type":"built-in"}},"coordinateSystem":"VEX Gaming Positioning System"},"paths":[{"segments":[{"controls":[{"uid":"4W2zQcXwOQ","x":-54.68353796877085,"y":-15.851044308020816,"lock":false,"visible":true,"heading":0,"__type":"end-point"},{"uid":"QFkcGh5F1o","x":-48,"y":-47,"lock":false,"visible":true,"heading":0,"__type":"end-point"}],"speedProfiles":[],"lookaheadKeyframes":[],"uid":"vKcL3ALbZl"},{"controls":[{"uid":"QFkcGh5F1o","x":-48,"y":-47,"lock":false,"visible":true,"heading":0,"__type":"end-point"},{"uid":"cLy125DKfN","x":-57.249,"y":-47,"lock":false,"visible":true,"heading":0,"__type":"end-point"}],"speedProfiles":[],"lookaheadKeyframes":[],"uid":"yrWBf6Nf7y"},{"controls":[{"uid":"cLy125DKfN","x":-57.249,"y":-47,"lock":false,"visible":true,"heading":0,"__type":"end-point"},{"uid":"KgOcBok7kg","x":-30,"y":-47,"lock":false,"visible":true,"heading":0,"__type":"end-point"}],"speedProfiles":[],"lookaheadKeyframes":[],"uid":"y04R6XMLJ6"},{"controls":[{"uid":"KgOcBok7kg","x":-30,"y":-47,"lock":false,"visible":true,"heading":0,"__type":"end-point"},{"uid":"vACjzD4bMg","x":-35,"y":-47,"lock":false,"visible":true,"heading":0,"__type":"end-point"}],"speedProfiles":[],"lookaheadKeyframes":[],"uid":"vjZDNHIERn"},{"controls":[{"uid":"vACjzD4bMg","x":-35,"y":-47,"lock":false,"visible":true,"heading":0,"__type":"end-point"},{"uid":"FNt78yyvAX","x":-31.233956283007007,"y":-33.62209490762807,"lock":false,"visible":true,"heading":0,"__type":"end-point"}],"speedProfiles":[],"lookaheadKeyframes":[],"uid":"8FpcV7sVKp"},{"controls":[{"uid":"FNt78yyvAX","x":-31.233956283007007,"y":-33.62209490762807,"lock":false,"visible":true,"heading":0,"__type":"end-point"},{"uid":"DcEDI5qeZ1","x":-16.942956283007,"y":-33.62209490762807,"lock":false,"visible":true,"heading":0,"__type":"end-point"}],"speedProfiles":[],"lookaheadKeyframes":[],"uid":"zNGzObGvdX"}],"pc":{"speedLimit":{"minLimit":{"value":0,"label":"0"},"maxLimit":{"value":127,"label":"127"},"step":1,"from":20,"to":100},"bentRateApplicableRange":{"minLimit":{"value":0,"label":"0"},"maxLimit":{"value":1,"label":"1"},"step":0.001,"from":0,"to":0.1},"maxDecelerationRate":127},"name":"Path","uid":"Iyujri1AnS","lock":false,"visible":true}]}

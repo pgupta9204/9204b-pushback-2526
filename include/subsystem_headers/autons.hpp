@@ -7,6 +7,8 @@ void right_8();
 
 void left_8();
 
+void right_4_wing();
+
 void skills_auton();
 
 void sawp();
