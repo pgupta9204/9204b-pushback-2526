@@ -44,10 +44,12 @@ void auto_boolean_update_thread(void* param)
  */
 void initialize() {
 
-    // teamColor current_team_color = SKILLS;
-    // auton selected_auton = SKILLS_AUTON;
-    // int auton_index = 0;
-    // int team_color_index = 0; // start on skills
+    current_team_color = RED;
+    selected_auton = RIGHT_8;
+    /*
+    int auton_index = 1;
+    int team_color_index = 1; // start on skills
+    */
 
 
 	pros::lcd::initialize(); // initialize brain screen

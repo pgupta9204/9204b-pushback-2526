@@ -16,9 +16,9 @@ void right_8()
     chassis.moveToPoint(-7.317, -40.401, 3000, {.maxSpeed = 100});
     matchloader_state = false;
     matchloader.set_value(LOW);
-    chassis.moveToPoint(-16.75, -20.50, 2000, {.forwards = false});
+    chassis.moveToPoint(-16.75, -28.50, 2000, {.forwards = false});
     
-    chassis.turnToHeading(45, 500);
+    chassis.turnToHeading(55, 500);
     // chassis.waitUntilDone();
     // intake = LOW_GOAL;
     // while(!indexer_team_color_detected)
@@ -28,9 +28,9 @@ void right_8()
     
     // pros::delay(300);
     // intake = INTAKE_INDEX;
-    chassis.moveToPoint(-46, -46, 2000, {.forwards = false});
+    chassis.moveToPoint(-46, -45, 2000, {.forwards = false});
     chassis.turnToHeading(-90, 1000);
-    chassis.moveToPoint(-27, -47.5, 3000, {.forwards = false, .maxSpeed = 80});
+    chassis.moveToPoint(-27, -48, 3000, {.forwards = false, .maxSpeed = 80});
     chassis.waitUntilDone();
     intake = HIGH_GOAL;
     pros::delay(1500);
