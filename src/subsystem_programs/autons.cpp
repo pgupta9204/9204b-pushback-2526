@@ -8,12 +8,12 @@ void right_8()
     chassis.setPose(-54.8375, -15.975, 90);
     
     intake = INTAKE_INDEX;
-    chassis.moveToPoint(-19.508, -22.263, 3000, {.maxSpeed = 60}); 
+    chassis.moveToPoint(-15.508, -23.763, 3000, {.maxSpeed = 60}); 
     chassis.waitUntil(34);
     // matchloader_state = true;
     // matchloader.set_value(HIGH);
-    chassis.turnToHeading(150, 1000);
-    chassis.moveToPoint(-7.317, -40.401, 3000, {.maxSpeed = 80});
+    chassis.turnToHeading(130, 1000);
+    chassis.moveToPoint(-7.317, -40.401, 3000, {.maxSpeed = 100});
     matchloader_state = false;
     matchloader.set_value(LOW);
     chassis.moveToPoint(-16.75, -20.50, 2000, {.forwards = false});
@@ -37,7 +37,7 @@ void right_8()
     intake = INTAKE_INDEX;
     matchloader_state = true;
     matchloader.set_value(HIGH);
-    chassis.moveToPoint(-60.882, -46.5, 3000, {.maxSpeed = 55});
+    chassis.moveToPoint(-60.882, -47.5, 3000, {.maxSpeed = 65});
     
     if(current_team_color == RED)
     {
@@ -53,12 +53,9 @@ void right_8()
             pros::delay(20);
         }
     }
-    
-    
-    pros::delay(100);
     matchloader_state = false;
     matchloader.set_value(LOW);
-    chassis.moveToPoint(-27, -47, 3000, {.forwards = false, .maxSpeed = 67});
+    chassis.moveToPoint(-27, -47.5, 3000, {.forwards = false, .maxSpeed = 67});
     chassis.waitUntil(33);
     // pros::delay(500);
     intake = HIGH_GOAL;
@@ -176,7 +173,7 @@ void right_4_wing()
     highGoalDescoreToggle();
     chassis.moveToPoint(-35, -47, 1000);
     chassis.moveToPoint(-31.234, -33.622, 2000, {.forwards = false, .maxSpeed = 80});
-    chassis.moveToPoint(-10, -33.622, 2000, {.forwards = false});
+    chassis.moveToPoint(-10, -33.622, 10000, {.forwards = false});
 }
 
 void skills_auton()

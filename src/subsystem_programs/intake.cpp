@@ -199,9 +199,9 @@ void intakeChange()
     else if (intake == MID_GOAL)
     {
         // if scoring on upper center (middle) goal, spin everything, engage middle goal scoring, and spin hood at half speed to not eject blocks too fast
-        // midgoal.set_value(HIGH);
+        midgoal.set_value(HIGH);
         preroller.move(127);
         rollers.move(127);
-        hood.move(64);
+        hood.move(40);
     }
 }
