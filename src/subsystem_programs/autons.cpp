@@ -193,7 +193,71 @@ void skills_auton()
 
 void sawp()
 {
+    // NEW SAWP
+    pros::Task auto_intake(auto_intake_thread, nullptr);
+    pros::Task auto_boolean_update(auto_boolean_update_thread, nullptr);
+    chassis.setPose(-54.8375, -15.975, 90);
+    intake = INTAKE_INDEX;
+    chassis.moveToPoint(-48, -48, 3000, {.maxSpeed = 100});
+    chassis.turnToHeading(-90, 1000);
+    matchloader_state = true;
+    matchloader.set_value(HIGH);
+    chassis.moveToPoint(-60.882, -47.5, 3000, {.maxSpeed = 65});
+    if(current_team_color == RED)
+    {
+        while(!indexer_blue_detected)
+        {
+            pros::delay(20);
+        }
+    }
+    else if (current_team_color == BLUE)
+    {
+        while(!indexer_red_detected)
+        {
+            pros::delay(20);
+        }
+    }
+    matchloader_state = false;
+    matchloader.set_value(LOW);
+    chassis.moveToPoint(-27, -47.5, 3000, {.forwards = false, .maxSpeed = 67});
+    intake = HIGH_GOAL;
+    pros::delay(2000);
+    intake = INTAKE_INDEX;
+    chassis.moveToPoint(-48, -48, 1000, {.maxSpeed = 100});
+    chassis.turnToHeading(45);
+    chassis.moveToPoint(-17, -17, 2000, {.maxSpeed = 67});
+    chassis.turnToHeading(-45);
+    chassis.moveToPose(-24, 30, 0, 3000, {.maxSpeed = 80});
+    chassis.moveToPose(-8, 8, -45, 2000, {.forwards = false});
+    intake = MID_GOAL;
+    pros::delay(2500);
+    chassis.moveToPoint(-48, 48, 1500);
+    chassis.turnToHeading(-90, 1000);
+    matchloader_state = true;
+    matchloader.set_value(HIGH);
+    chassis.moveToPoint(-60.882, 48, 3000, {.maxSpeed = 65});
+    if(current_team_color == RED)
+    {
+        while(!indexer_blue_detected)
+        {
+            pros::delay(20);
+        }
+    }
+    else if (current_team_color == BLUE)
+    {
+        while(!indexer_red_detected)
+        {
+            pros::delay(20);
+        }
+    }
+    matchloader_state = false;
+    matchloader.set_value(LOW);
+    chassis.moveToPoint(-27, 48, 3000, {.forwards = false, .maxSpeed = 80});
+    intake = HIGH_GOAL;
+
+
     // SAWP autonomous
+    /*
     pros::Task auto_intake(auto_intake_thread, nullptr);
     pros::Task auto_boolean_update(auto_boolean_update_thread, nullptr);
     chassis.setPose(-54.8375, -15.975, 90);
@@ -241,5 +305,6 @@ void sawp()
     int timer = 0;
     chassis.waitUntilDone();
     intake = HIGH_GOAL;
+    */
 
 }
