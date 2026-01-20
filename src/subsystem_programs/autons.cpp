@@ -224,9 +224,9 @@ void sawp()
     pros::delay(2000);
     intake = INTAKE_INDEX;
     chassis.moveToPoint(-48, -48, 1000, {.maxSpeed = 100});
-    chassis.turnToHeading(45);
+    chassis.turnToHeading(45, 1000);
     chassis.moveToPoint(-17, -17, 2000, {.maxSpeed = 67});
-    chassis.turnToHeading(-45);
+    chassis.turnToHeading(-45, 1000);
     chassis.moveToPose(-24, 30, 0, 3000, {.maxSpeed = 80});
     chassis.moveToPose(-8, 8, -45, 2000, {.forwards = false});
     intake = MID_GOAL;
