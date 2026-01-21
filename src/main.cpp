@@ -45,7 +45,7 @@ void auto_boolean_update_thread(void* param)
 void initialize() {
 
     current_team_color = RED;
-    selected_auton = RIGHT_8;
+    selected_auton = RIGHT_4_WING;
     /*
     int auton_index = 1;
     int team_color_index = 1; // start on skills
@@ -176,8 +176,10 @@ void autonomous()
     else if (selected_auton == SAWP)
     {
         sawp();
+    } else if (selected_auton == RIGHT_4_WING)
+    {
+        right_4_wing();
     }
-    
 
 }
 

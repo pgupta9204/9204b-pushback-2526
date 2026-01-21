@@ -87,7 +87,7 @@ void intakeChange()
 
             rollers.move(80);
             
-            hood.move(-30);
+            hood.move(-10);
 
             bool index;
             bool eject;

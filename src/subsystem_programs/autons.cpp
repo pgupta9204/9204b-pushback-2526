@@ -142,13 +142,18 @@ void right_4_wing()
 {
     pros::Task auto_intake(auto_intake_thread, nullptr);
     pros::Task auto_boolean_update(auto_boolean_update_thread, nullptr);
-    chassis.setPose(-54.8375, -15.975, 180);
+    chassis.setPose(-54.8375, -15.975, 90);
     intake = INTAKE_INDEX;
-    matchloader_state = true;
-    matchloader.set_value(HIGH);
+    
     highGoalDescoreToggle();
     chassis.moveToPoint(-48, -47, 2000);
-    chassis.moveToPoint(-57.249, -47, 1000, {.maxSpeed = 90});
+    chassis.waitUntilDone();
+    chassis.turnToHeading(270, 500);
+    chassis.waitUntilDone();
+    matchloader_state = true;
+    matchloader.set_value(HIGH);
+    pros::delay(300);
+    chassis.moveToPose(-57.249, -48, 270, 1000, {.maxSpeed = 90});
     if(current_team_color == RED)
     {
         while(!indexer_blue_detected)
@@ -198,11 +203,11 @@ void sawp()
     pros::Task auto_boolean_update(auto_boolean_update_thread, nullptr);
     chassis.setPose(-54.8375, -15.975, 90);
     intake = INTAKE_INDEX;
-    chassis.moveToPoint(-48, -48, 3000, {.maxSpeed = 100});
+    chassis.moveToPoint(-48, -47, 3000, {.maxSpeed = 100});
     chassis.turnToHeading(-90, 1000);
     matchloader_state = true;
     matchloader.set_value(HIGH);
-    chassis.moveToPoint(-60.882, -47.5, 3000, {.maxSpeed = 65});
+    chassis.moveToPoint(-60.882, -46.5, 3000, {.maxSpeed = 65});
     if(current_team_color == RED)
     {
         while(!indexer_blue_detected)
@@ -219,7 +224,8 @@ void sawp()
     }
     matchloader_state = false;
     matchloader.set_value(LOW);
-    chassis.moveToPoint(-27, -47.5, 3000, {.forwards = false, .maxSpeed = 67});
+    chassis.moveToPoint(-27, -47.5, 2000, {.forwards = false, .maxSpeed = 67});
+    chassis.waitUntilDone();
     intake = HIGH_GOAL;
     pros::delay(2000);
     intake = INTAKE_INDEX;
@@ -252,7 +258,8 @@ void sawp()
     }
     matchloader_state = false;
     matchloader.set_value(LOW);
-    chassis.moveToPoint(-27, 48, 3000, {.forwards = false, .maxSpeed = 80});
+    chassis.moveToPoint(-27, 48, 2000, {.forwards = false, .maxSpeed = 80});
+    chassis.waitUntilDone();
     intake = HIGH_GOAL;
 
 
