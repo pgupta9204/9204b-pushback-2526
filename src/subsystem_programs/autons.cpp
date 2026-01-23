@@ -146,14 +146,14 @@ void right_4_wing()
     intake = INTAKE_INDEX;
     
     highGoalDescoreToggle();
-    chassis.moveToPoint(-48, -47, 2000);
+    chassis.moveToPoint(-48, -47.5, 1600);
     chassis.waitUntilDone();
-    chassis.turnToHeading(270, 500);
+    chassis.turnToHeading(260, 500);
     chassis.waitUntilDone();
     matchloader_state = true;
     matchloader.set_value(HIGH);
     pros::delay(300);
-    chassis.moveToPose(-57.249, -48, 270, 1000, {.maxSpeed = 90});
+    chassis.moveToPoint(-56.249, -48, 1500, {.maxSpeed = 90});
     if(current_team_color == RED)
     {
         while(!indexer_blue_detected)
@@ -168,17 +168,20 @@ void right_4_wing()
             pros::delay(20);
         }
     }
+    pros::delay(100);
     matchloader_state = false;
     matchloader.set_value(LOW);
     chassis.moveToPoint(-27, -47, 3000, {.forwards = false});
     chassis.waitUntil(27);
     intake = HIGH_GOAL;
-    pros::delay(500);
+    pros::delay(1250);
     intake = INTAKE_INDEX;
     highGoalDescoreToggle();
-    chassis.moveToPoint(-35, -47, 1000);
-    chassis.moveToPoint(-31.234, -33.622, 2000, {.forwards = false, .maxSpeed = 80});
-    chassis.moveToPoint(-10, -33.622, 10000, {.forwards = false});
+    chassis.moveToPoint(-40, -47, 1000);
+    chassis.moveToPoint(-30, -40, 2000, {.forwards = false, .maxSpeed = 80});
+    chassis.moveToPoint(-10, -33.622, 2000, {.forwards = false});
+    // chassis.moveToPose(-10, -33.622, 270, 2000, {.forwards = false});
+    chassis.turnToHeading(250, 10000, {.minSpeed = 127});
 }
 
 void skills_auton()
@@ -201,9 +204,10 @@ void sawp()
     // NEW SAWP
     pros::Task auto_intake(auto_intake_thread, nullptr);
     pros::Task auto_boolean_update(auto_boolean_update_thread, nullptr);
-    chassis.setPose(-54.8375, -15.975, 90);
+    chassis.setPose(-54.8375, -15.975, 0);
     intake = INTAKE_INDEX;
-    chassis.moveToPoint(-48, -47, 3000, {.maxSpeed = 100});
+   // chassis.moveToPoint();
+    chassis.moveToPoint(-48, -47, 3000, {.forwards = false, .maxSpeed = 100});
     chassis.turnToHeading(-90, 1000);
     matchloader_state = true;
     matchloader.set_value(HIGH);
