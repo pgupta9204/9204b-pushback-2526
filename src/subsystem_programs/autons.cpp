@@ -189,6 +189,90 @@ void skills_auton()
     // Skills autonomous
     pros::Task auto_intake(auto_intake_thread, nullptr);
     pros::Task auto_boolean_update(auto_boolean_update_thread, nullptr);
+    chassis.setPose(-54.8375, -15.975, 90);
+    // score preload
+    intake = INTAKE_INDEX;
+    chassis.moveToPoint(-48, -47.5, 1600);
+    chassis.turnToHeading(-90, 500);
+    chassis.moveToPoint(-27, -47, 3000, {.forwards = false});
+    chassis.waitUntil(27);
+    intake = HIGH_GOAL;
+    pros::delay(400);
+    // matchload bottom right loader
+    intake = INTAKE_INDEX;
+    matchloader_state = true;
+    matchloader.set_value(HIGH);
+    pros::delay(500);
+    chassis.moveToPoint(-56.249, -48, 1000, {.maxSpeed = 90});
+    pros::delay(2500); // too long of matchload time?
+    matchloader_state = false;
+    matchloader.set_value(LOW);
+    // drive to opposite side of long goal and score
+    chassis.moveToPoint(-36, -60, 2000, {.forwards = false});
+    chassis.turnToHeading(-90, 500);
+    chassis.moveToPoint(48, -60, 3000, {.forwards = false}); // too long of drive time?
+    chassis.turnToHeading(-180, 500);
+    chassis.moveToPoint(48, -48, 1000, {.forwards = false});
+    chassis.turnToHeading(90, 500);
+    chassis.moveToPoint(27, -47, 1500, {.forwards = false});
+    intake = HIGH_GOAL;
+    pros::delay(2000); // is this too long of outtake for 6 blocks?
+    // matchload and score bottom right loader
+    intake = INTAKE_INDEX;
+    matchloader_state = true;
+    matchloader.set_value(HIGH);
+    pros::delay(500);
+    chassis.moveToPoint(56.249, -48, 1000, {.maxSpeed = 90});
+    pros::delay(2500); // too long of matchload time?
+    matchloader_state = false;
+    matchloader.set_value(LOW);
+    pros::delay(100);
+    chassis.moveToPoint(27, -47, 2000, {.forwards = false});
+    intake = HIGH_GOAL;
+    pros::delay(2000); // too long of outtake for 6 blocks?
+    // drive to far side of field
+    chassis.moveToPoint(40, -48, 1000);
+    chassis.turnToHeading(0, 1000);
+    chassis.moveToPoint(40, 48, 3000); // too long of wait for driving?
+    // matchload loader
+    matchloader_state = true;
+    matchloader.set_value(HIGH);
+    pros::delay(500);
+    chassis.moveToPoint(56.249, 48, 1000, {.maxSpeed = 90});
+    pros::delay(2500); // too long of matchload time?
+    matchloader_state = false;
+    matchloader.set_value(LOW);
+    // drive to other side of long goal and score
+    chassis.moveToPoint(36, 60, 2000, {.forwards = false});
+    chassis.turnToHeading(90, 500);
+    chassis.moveToPoint(-48, 60, 3000, {.forwards = false}); // too long of drive time?
+    chassis.turnToHeading(0, 500);
+    chassis.moveToPoint(-48, 48, 1000, {.forwards = false});
+    chassis.turnToHeading(-90, 500);
+    chassis.moveToPoint(-27, 48, 1500, {.forwards = false});
+    intake = HIGH_GOAL;
+    pros::delay(2000); // too long of outtake?
+    // matchload loader
+    intake = INTAKE_INDEX;
+    matchloader_state = true;
+    matchloader.set_value(HIGH);
+    pros::delay(500);
+    chassis.moveToPoint(-56.249, 48, 1000, {.maxSpeed = 90});
+    pros::delay(2500); // too long of matchload time?
+    matchloader_state = false;
+    matchloader.set_value(LOW);
+    pros::delay(100);
+    chassis.moveToPoint(-27, 48, 2000, {.forwards = false});
+    intake = HIGH_GOAL;
+    pros::delay(2000); // too long of outtake?
+    // finish auton, go to park
+    chassis.moveToPoint(48, -48, 1000);
+    chassis.moveToPose(-72 + 7.5, 0 - 7.5, 180, 20000, {.maxSpeed = 80});
+
+    // old auto
+    /*
+    pros::Task auto_intake(auto_intake_thread, nullptr);
+    pros::Task auto_boolean_update(auto_boolean_update_thread, nullptr);
     intake = HIGH_GOAL;
     
     chassis.setPose(0, 0, 0);
@@ -197,6 +281,7 @@ void skills_auton()
     matchloader_state = true;
     matchloader.set_value(HIGH);
     chassis.moveToPoint(0, 30, 60000, {.forwards = true});
+    */
 }
 
 void sawp()
