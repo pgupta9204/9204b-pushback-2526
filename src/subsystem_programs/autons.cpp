@@ -204,9 +204,9 @@ void sawp()
     // NEW SAWP
     pros::Task auto_intake(auto_intake_thread, nullptr);
     pros::Task auto_boolean_update(auto_boolean_update_thread, nullptr);
-    chassis.setPose(-54.8375, -15.975, 0);
+    chassis.setPose(-72 + 16.86 + 7.5, 0 - 7.5, 0);
     intake = INTAKE_INDEX;
-   // chassis.moveToPoint();
+    chassis.moveToPoint(-72 + 16.86 + 7.5, 0 - 7.5 + 14, 2000, {.maxSpeed = 80});
     chassis.moveToPoint(-48, -47, 3000, {.forwards = false, .maxSpeed = 100});
     chassis.turnToHeading(-90, 1000);
     matchloader_state = true;
